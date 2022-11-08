@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
@@ -15,11 +16,57 @@ const INITIAL_STATE = {
   filter: '',
 };
 
+function NewPhonebook() {
+  const [filter, setFilter] = useState('');
+
+  const [contacts, setContacts] = useState(...INITIAL_STATE);
+
+  const onFilterChange = () => {
+    setFilter('');
+  };
+  // const handleChange = event => {
+  //   const inputName = event.target.name;
+
+  //   switch (inputName) {
+  //     case 'filter':
+  //       setFilter(event.target.value);
+  //       break;
+
+  //     default:
+  //       return;
+  //   }
+  // };
+  const onAddContact = contact => {
+    if (contacts.filter(({ name }) => name === contact.name).length !== 0) {
+      alert(contact.name + 'is already in contacts!');
+      return;
+    }
+
+    setContacts(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
+  };
+  const onDeleteContact = id => {
+    setContacts(({ contacts }) => {
+      const withUpdate = contacts.filter(contact => contact.id !== id);
+      return { contacts: withUpdate };
+    });
+  };
+  const filteredContact = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
+  //! остановился на componentDidMount
+
+  return <div>asd</div>;
+}
+
 class Phonebook extends Component {
   state = {
     ...INITIAL_STATE,
   };
-
   onFilterChange = filter => {
     this.setState({ filter });
   };
@@ -50,6 +97,7 @@ class Phonebook extends Component {
     );
   };
 
+  //! остановился на componentDidMount
   componentDidMount() {
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
