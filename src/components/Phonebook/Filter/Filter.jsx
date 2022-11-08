@@ -5,7 +5,7 @@ function Filter({ filter, onFilterChange }) {
   return (
     <div>
       <label>
-        Find contacts by Name
+        Find contacts by Name:
         <input
           type="text"
           value={filter}
