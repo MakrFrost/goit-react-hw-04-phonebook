@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import { useState, useEffect } from 'react';
 
 import Form from './Form/Form';
@@ -47,28 +46,11 @@ function Phonebook() {
   const onDeleteContact = id => {
     setContacts(contacts.filter(contact => contact.id !== id));
   };
-  // const filteredContact = () => {
-  //   console.log(contacts);
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase())
-  //   );
   const filteredContact = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-  //     console.log(contacts);
-  // const filtered = contacts.filter(contact => contact.name.toLowerCase());
-  // console.log(filtered, 'filtered');
-  // const filteredMk2 = filtered.includes(filter.toLowerCase());
-  // console.log(filteredMk2);
-  // return filteredMk2;
-  // };
-
-  // const normalizeFilter = filter.toLowerCase();
-  // const filterContacts = contacts.filter(contact =>
-  //   contact.name.toLowerCase().includes(normalizeFilter)
-  // );
 
   return (
     <div>
@@ -85,75 +67,5 @@ function Phonebook() {
     </div>
   );
 }
-
-// class Phonebook extends Component {
-//   state = {
-//     ...INITIAL_STATE,
-//   };
-//   onFilterChange = filter => {
-//     this.setState({ filter });
-//   };
-
-//   onAddContact = contact => {
-//     const { contacts } = this.state;
-//     if (contacts.filter(({ name }) => name === contact.name).length !== 0) {
-//       alert(contact.name + 'is already in contacts!');
-//       return;
-//     }
-
-//     this.setState(prevState => ({
-//       contacts: [contact, ...prevState.contacts],
-//     }));
-//   };
-
-//   onDeleteContact = id => {
-//     this.setState(({ contacts }) => {
-//       const withUpdate = contacts.filter(contact => contact.id !== id);
-//       return { contacts: withUpdate };
-//     });
-//   };
-
-//   filteredContact = () => {
-//     const { contacts, filter } = this.state;
-//     return contacts.filter(contact =>
-//       contact.name.toLowerCase().includes(filter.toLowerCase())
-//     );
-//   };
-
-//   componentDidMount() {
-//     const contacts = localStorage.getItem('contacts');
-//     const parsedContacts = JSON.parse(contacts);
-
-//     if (parsedContacts) {
-//       this.setState({ contacts: parsedContacts });
-//     }
-//   }
-
-//   componentDidUpdate(prevState) {
-//     if (this.state.contacts !== prevState.contacts) {
-//       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-//     }
-//   }
-
-//   render() {
-//     const { filter } = this.state;
-//     const filteredContacts = this.filteredContact();
-
-//     return (
-//       <div>
-//         <Section title={'Add contact to phonebook!'}>
-//           <Form onAddContact={this.onAddContact} />
-//         </Section>
-//         <Section title={'Contacts:'}>
-//           <Filter filter={filter} onFilterChange={this.onFilterChange} />
-//           <Contacts
-//             contacts={filteredContacts}
-//             onDeleteContact={this.onDeleteContact}
-//           />
-//         </Section>
-//       </div>
-//     );
-//   }
-// }
 
 export default Phonebook;
